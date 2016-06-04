@@ -46,7 +46,7 @@ export default class DatePicker extends Component {
   state = {
     visible: false,
     value: this.props.defaultValue && moment(this.props.defaultValue, this.props.displayFormat),
-    inputValue: this.props.defaultValue || '',
+    inputValue: this.props.defaultValue || ''
   };
 
   componentWillReceiveProps({defaultValue, displayFormat}) {
