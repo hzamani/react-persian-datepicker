@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { persianNumber } from '../utils/persian';
 import { leftArrow, rightArrow } from '../utils/assets';
-import moment from 'moment-jalali';
+import moment from 'moment-jalaali';
 
 // List of months
 const months = [

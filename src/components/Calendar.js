@@ -4,7 +4,7 @@ import DaysOfWeek from './DaysOfWeek';
 import MonthSelector from './MonthSelector';
 import Day from './Day';
 import { getDaysOfMonth } from '../utils/moment-helper';
-import moment from 'moment-jalali';
+import moment from 'moment-jalaali';
 
 // Load Persian localisation
 moment.loadPersian();

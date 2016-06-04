@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Calendar from './Calendar';
-import moment from 'moment-jalali';
+import moment from 'moment-jalaali';
 
 const styles = {
   wrapperVisible: {
@@ -30,7 +30,7 @@ const styles = {
 
 export default class DatePicker extends Component {
   static propTypes = {
-    value: PropTypes.object,
+    defaultValue: PropTypes.string,
     onChange: PropTypes.func,
     children: PropTypes.node,
     min: PropTypes.object,
@@ -45,15 +45,14 @@ export default class DatePicker extends Component {
 
   state = {
     visible: false,
-    value: this.props.value,
-    inputValue: this.props.value && typeof this.props.value === 'object' && this.props.value._isAMomentObject
-      ? this.props.value.format(this.props.displayFormat)
-      : ''
+    value: this.props.defaultValue && moment(this.props.defaultValue, this.props.displayFormat),
+    inputValue: this.props.defaultValue || '',
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.value !== nextProps.value) {
-      this.handleChange(nextProps.value, false, true);
+  componentWillReceiveProps({defaultValue, displayFormat}) {
+    if (this.props.defaultValue !== defaultValue) {
+      const format = displayFormat || this.props.displayFormat;
+      this.handleChange(moment(defaultValue, format), false, false);
     }
   }
 
@@ -116,7 +115,7 @@ export default class DatePicker extends Component {
 
   render() {
     const { visible, inputValue, value } = this.state;
-    const { min, max, defaultMonth, children, ...rest } = this.props;
+    const { min, max, defaultMonth, children, defaultValue, ...rest } = this.props;
 
     const calendarVisibilityStyle = visible ? styles.calendarVisible : styles.calendarHidden;
     const calendarStyles = {
