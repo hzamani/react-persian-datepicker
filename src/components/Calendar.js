@@ -26,7 +26,7 @@ export default class Calendar extends Component {
   };
 
   state = {
-    month: this.props.defaultMonth || this.props.selectedDay || moment(),
+    month: this.props.defaultMonth || this.props.selectedDay || this.props.min || moment(),
     selectedDay: this.props.selectedDay || null,
     mode: 'days'
   };
